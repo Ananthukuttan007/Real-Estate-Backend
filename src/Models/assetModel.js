@@ -8,7 +8,6 @@ const assetSchema = new mongooose.Schema({
     ownership : {required : true, type : String},
     propertyAge : {required : true, type : String},
     propertyApproved : {required : true, type : String},
-    propertyAge : {required : true, type : String},
     propertyDescription : {required : true, type : String},
     bankLoan : {required : true, type : String},
 
