@@ -3,7 +3,7 @@ const userModel = require('../models/userModel')
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
-const secret = "RESTAPI"
+let secret = "RESTAPI"
 
 
 
@@ -11,12 +11,13 @@ router.post('/register', body('email').isEmail(), body('password').isLength({ mi
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
+            console.log(errors);
             return res.status(400).json({ errors: errors.array() });
         }
         const data = new userModel(req.body);
         data.password = await bcrypt.hash(data.password, 10)
         await data.save();
-        res.status(200).json({ status: "success", data });
+        res.status(200).json({ message: "success", data });
     } catch (e) {
         res.status(400).json({
             message: e.message
@@ -38,15 +39,16 @@ router.post('/login', async (req, res) => {
                         exp: Math.floor(Date.now() / 1000) + (60 * 60),
                         data: checkUser._id
                     }, secret);
-                    res.status(200).json({ status: "success", token });
+                    console
+                    res.status(200).json({ message: "success", token });
                 }
                 else {
-                    res.status(400).json({ status: "Wrong Password" });
+                    res.status(203).json({ message: "Wrong Password" });
                 }
             });
         }
         else {
-            res.status(400).json({ status: "Email not found" });
+            res.status(203).json({ message: "Email not found" });
         }
     } catch (e) {
         res.status(400).json({
@@ -54,5 +56,11 @@ router.post('/login', async (req, res) => {
         })
     }
 })
+
+router.post("/logout", (req, res) => {
+    token = "";
+    res.status(200).send("Logged out sucessfully");
+});
+
 
 module.exports = router;

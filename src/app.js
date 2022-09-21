@@ -4,8 +4,7 @@ const app = express();
 const cors = require('cors');
 const userRoute = require('./routes/user');
 const assetRoute = require('./routes/asset');
-var jwt = require('jsonwebtoken');
-const secret = "RESTAPI"
+
 
 
 app.use(bodyParser.json());
