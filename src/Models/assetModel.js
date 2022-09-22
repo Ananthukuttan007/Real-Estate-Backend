@@ -2,6 +2,7 @@ const mongooose = require('mongoose');
 
 const assetSchema = new mongooose.Schema({
     // Your code goes here
+
     propertyType: { required: true, type: String },
     negotable: { required: true, type: String },
     price: { required: true, type: String },
@@ -11,7 +12,6 @@ const assetSchema = new mongooose.Schema({
     propertyAge: { required: true, type: String },
     propertyDescription: { required: true, type: String },
     bankLoan: { required: true, type: String },
-
     length: { required: true, type: String },
     breath: { required: true, type: String },
     totalArea: { required: true, type: String },

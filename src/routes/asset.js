@@ -46,6 +46,7 @@ router.post('/', async (req, res) => {
     try {
         const asset = await assetModel.create({
             //mention as per the schema which is to be created
+
             propertyType: req.body.propertyType,
             negotable: req.body.negotable,
             price: req.body.price,
@@ -93,6 +94,7 @@ router.post('/', async (req, res) => {
         console.log(e.message)
         res.status(400).json({
             message: e.message
+            
         })
     }
 })
