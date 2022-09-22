@@ -29,9 +29,10 @@ router.use('/', (req, res, next) => {
 
 router.get('/', async (req, res) => {
     try {
-        const posts = await postModel.find({ user: req.user });
+        const posts = await assetModel.find({ user: req.user });
         res.status(200).json(posts);
     } catch (e) {
+        console.log(e.message)
         res.status(400).json({
             message: e.message
         })
@@ -39,6 +40,9 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    const PPDId = "PPD" + parseInt(Math.random() * 10000)
+    const Views = parseInt(Math.random() * 10)
+    const DaysLeft = parseInt(Math.random() * 10)
     try {
         const asset = await assetModel.create({
             //mention as per the schema which is to be created
@@ -76,7 +80,10 @@ router.post('/', async (req, res) => {
             address: req.body.address,
             landmark: req.body.landmark,
             latitude: req.body.latitude,
-            longitude: req.body.longitude
+            longitude: req.body.longitude,
+            PPDId: PPDId,
+            Views: Views,
+            DaysLeft: DaysLeft
         })
         res.status(200).json({
             message: "success",

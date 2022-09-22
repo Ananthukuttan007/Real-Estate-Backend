@@ -41,6 +41,9 @@ const assetSchema = new mongooose.Schema({
     landmark: { required: true, type: String },
     latitude: { required: true, type: String },
     longitude: { required: true, type: String },
+    PPDId: { required: true, type: String },
+    Views: { required: true, type: String },
+    DaysLeft: { required: true, type: String }
 
 }, {
     versionKey: false // You should be aware of the outcome after set to false
