@@ -31,6 +31,19 @@ router.get('/', async (req, res) => {
     try {
         const posts = await assetModel.find();
         res.status(200).json(posts);
+        console.log(posts)
+    } catch (e) {
+        console.log(e.message)
+        res.status(400).json({
+            message: e.message
+        })
+    }
+})
+router.put('/:id', async (req, res) => {
+    try {
+        await assetModel.findByIdAndUpdate(req.params.id, req.body)
+        const posts = await assetModel.findById(req.params.id);
+        res.status(200).json(posts);
     } catch (e) {
         console.log(e.message)
         res.status(400).json({
@@ -83,7 +96,8 @@ router.post('/', async (req, res) => {
             longitude: req.body.longitude,
             PPDId: PPDId,
             Views: Views,
-            DaysLeft: DaysLeft
+            DaysLeft: DaysLeft,
+            Sold: "Unsold"
         })
         res.status(200).json({
             message: "success",

@@ -43,7 +43,8 @@ const assetSchema = new mongooose.Schema({
     longitude: { type: String },
     PPDId: { required: true, type: String },
     Views: { required: true, type: String },
-    DaysLeft: { required: true, type: String }
+    DaysLeft: { required: true, type: String },
+    Sold: { required: true, type: String }
 
 }, {
     versionKey: false // You should be aware of the outcome after set to false
