@@ -29,7 +29,7 @@ router.use('/', (req, res, next) => {
 
 router.get('/', async (req, res) => {
     try {
-        const posts = await assetModel.find({ user: req.user });
+        const posts = await assetModel.find();
         res.status(200).json(posts);
     } catch (e) {
         console.log(e.message)
@@ -38,7 +38,6 @@ router.get('/', async (req, res) => {
         })
     }
 })
-
 router.post('/', async (req, res) => {
     const PPDId = "PPD" + parseInt(Math.random() * 10000)
     const Views = parseInt(Math.random() * 10)
@@ -94,7 +93,7 @@ router.post('/', async (req, res) => {
         console.log(e.message)
         res.status(400).json({
             message: e.message
-            
+
         })
     }
 })
